@@ -10,11 +10,11 @@
 <h2> Enter Your Outfit</h2>
 <br> <br>
     <form th:action="@{/outfit}" th:object="${outfit}" method="post" >
-        <input id="top" type="text" th:field="*{top}" placeholder="Top">
+        <input id="top" type="text" th:field="*{top}" placeholder="ex: Polo White T-Shirt">
         <br>
-        <input id="bottom" type="text" th:field="*{bottom}" placeholder="Bottoms">
+        <input id="bottom" type="text" th:field="*{bottom}" placeholder="ex: Levi Khaki Pants">
         <br>
-        <input id="shoes" type="text" th:field="*{shoes}" placeholder="Shoes">
+        <input id="shoes" type="text" th:field="*{shoes}" placeholder="ex: Jordan Bred 11s">
         <br>
         <input type="submit" value="Submit">
     </form>
