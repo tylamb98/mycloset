@@ -2,11 +2,12 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <th:block th:insert="fragments/base :: headAttributes"></th:block>
     <title>MyCloset</title>
 </head>
 
 <body>
+<div th:replace="fragments/base :: header"></div>
 <h2> Enter Your Outfit</h2>
 <br> <br>
     <form th:action="@{/outfit}" th:object="${outfit}" method="post" >
@@ -19,5 +20,7 @@
         <input type="submit" value="Submit">
     </form>
 
+    <div th:replace="fragments/base :: footer"></div>
 </body>
+<th:block th:replace="fragments/base :: scripts"></th:block>
 </html>

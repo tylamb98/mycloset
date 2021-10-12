@@ -1,11 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <th:block th:insert="fragments/base :: headAttributes"></th:block>
+    <title>Outfit</title>
 </head>
 <body>
+    <div th:replace="fragments/base :: header"></div>
 
-<h2> Your outfit is <span th:text="${fullOufit}"> </span></h2>
+<h2> Your outfit is <span th:text="${outfit}"> </span></h2>
+
+    <div th:replace="fragments/base :: footer"></div>
 </body>
+    <th:block th:replace="fragments/base :: scripts"></th:block>
 </html>

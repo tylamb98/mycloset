@@ -21,7 +21,7 @@ public class OutfitController {
 
     @GetMapping("/display")
     public String displayFullOutfit (@ModelAttribute("outfit") Object attrs, Model model) {
-        model.addAttribute("fullOufit", attrs);
+        model.addAttribute("fullOutfit", attrs);
         return "display-outfit";
     }
 
