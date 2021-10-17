@@ -19,16 +19,13 @@ public class OutfitController {
         return "add-outfit";        //returning the view
     }
 
-    @GetMapping("/display")
-    public String displayFullOutfit (@ModelAttribute("outfit") Object attrs, Model model) {
-        model.addAttribute("fullOutfit", attrs);
-        return "display-outfit";
-    }
 
     @PostMapping
-    public String handleOutfitForm(@ModelAttribute("outfit") Outfit outfit, RedirectAttributes attrs) {
-        attrs.addFlashAttribute("outfit",outfit.getTop() + " and " + outfit.getBottom() + " with " + outfit.getShoes());
-        return "redirect:/outfit/display";
+    public String handleOutfitForm(@ModelAttribute("outfit") Outfit outfit) {
+        System.out.println("Top: " + outfit.getTop());
+        System.out.println("Bottoms: " + outfit.getBottom());
+        System.out.println("Shoes: " + outfit.getShoes());
+        return "redirect:/index-page";
     }
 
 
