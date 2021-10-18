@@ -9,16 +9,32 @@
 <body>
 <div th:replace="fragments/base :: navigation"></div>
 <div th:replace="fragments/base :: header"></div>
-<h2> Enter Your Outfit</h2>
-<br> <br>
-    <form th:action="@{/outfit}" th:object="${outfit}" method="post" >
-        <input id="top" type="text" th:field="*{top}" placeholder="ex: Polo White T-Shirt">
-        <br>
-        <input id="bottom" type="text" th:field="*{bottom}" placeholder="ex: Levi Khaki Pants">
-        <br>
-        <input id="shoes" type="text" th:field="*{shoes}" placeholder="ex: Jordan Bred 11s">
-        <br>
-        <input type="submit" value="Submit">
+
+<br>
+<h6 class="text-center"> Enter Your Outfit</h6>
+    <form class="mt-3" th:action="@{/outfit}" th:object="${outfit}" method="post">
+        <div class="container-fluid">
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input class="form-control" id="top" type="text" th:field="*{top}" placeholder="Shirt">
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input id="bottom" type="text" th:field="*{bottom}" placeholder="Pants">
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <input id="shoes" type="text" th:field="*{shoes}" placeholder="Shoes">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-8 col-md-3">
+                    <input class="btn btn-light btn-outline-dark" type="submit" value="Submit">
+                </div>
+            </div>
+        </div>
     </form>
 
     <div th:replace="fragments/base :: footer"></div>
