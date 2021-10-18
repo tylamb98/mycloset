@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <th:block th:fragment="headerFiles">
         <meta charset="UTF-8">
@@ -8,19 +9,54 @@
         <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.1/css/bootstrap.min.css}">
         <link th:rel="stylesheet" th:href="@{/css/base.css}">
     </th:block>
+
     <title>MyCloset</title>
 </head>
+
 <body>
-<div th:fragment="header">
-    <h2>My First Hello World Spring Boot Application</h2>
-    <img id="closet" th:src="@{/images/closet.jpeg}">
+    <nav th:fragment="navigation" class="navbar-expand-lg navbar-light bg-light border border-dark">
+        <a class="navbar-brand" th:href="@{/index-page}"><img id="logo" th:src="@{/images/logo.png}"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarContent" aria-controls="navBarContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/index-page' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/index-page}">Home</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/outfit' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/outfit}">Add Outfit</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div th:fragment="header">
+    <div class="container-fluid">
+        <div class="row justify-content-center mt-3 mb-3 ">
+            <div class="col-12">
+                <h2 class="text-center">My First Hello World Spring Boot Application</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <img id="closet" th:src="@{/images/closet.jpeg}">
+            </div>
+        </div>
+    </div>
 </div>
 
-<div th:fragment="footer">
-    <h2>Copyright @2021</h2>
-</div>
+    <footer class="footer" th:fragment="footer">
+    <div class="container text-center">
+        <span class="text-muted">Copyright @2021</span>
+    </div>
+</footer>
 
 </body>
+
+
 <th:block th:fragment="scripts">
     <script th:src="@{/webjars/popper.js/2.9.3/umd/popper.min.js}"></script>
     <script th:href="@{/webjars/bootstrap/5.1.1/js/bootstrap.min.js}"></script>
