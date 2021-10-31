@@ -1,10 +1,22 @@
 package edu.neiu.mycloset.models;
 
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Entity
 public class Outfit {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     //Instance variables
+    private long id;
     private String top;
     private String bottom;
     private String shoes;
+
+    private LocalDateTime created;
+    private LocalDateTime modified;
+
 
     //Constructors
     public Outfit() {
@@ -43,4 +55,31 @@ public class Outfit {
     public void setShoes(String shoes) {
         this.shoes = shoes;
     }
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getModified() {
+        return modified;
+    }
+
+    public void setModified(LocalDateTime modified) {
+        this.modified = modified;
+    }
+
+    @PrePersist
+    public void onCreat() {
+        this.setCreated(LocalDateTime.now());
+        this.setModified(LocalDateTime.now());
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        this.setModified(LocalDateTime.now());
+    }
+
 }
