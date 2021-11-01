@@ -3,12 +3,30 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:insert="fragments/base :: headerFiles"></th:block>
+
     <title>Outfit</title>
 </head>
-<body>
+<body><div th:replace="fragments/base :: navigation"></div>
     <div th:replace="fragments/base :: header"></div>
 
-<h2> Your outfit is <span th:text="${outfit}"> </span></h2>
+
+    <div class="container-fluid">
+        <div th:each="outfit: ${outfits}">
+            <div class="row justify-content-center mb-3 mt-5">
+                <div class="col-2 col-md-4"></div>
+                <div class="col-8 col-md-4 card">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${outfit.top} + ', ' + ${outfit.bottom} + ', and ' + ${outfit.shoes}"></h5>
+                        <span th:text="'Date created: ' + ${#temporals.format(outfit.created, 'dd-MM-yyyy HH:mm')}"></span><br>
+                        <span th:text="'Date modified: ' + ${#temporals.format(outfit.modified, 'dd-MM-yyyy HH:mm')}"></span>
+                    </div>
+                </div>
+                <div class="col-2 col-md-4"></div>
+            </div>
+        </div>
+    </div>
+
+
 
     <div th:replace="fragments/base :: footer"></div>
 </body>

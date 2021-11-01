@@ -29,6 +29,9 @@
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/outfit' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/outfit}">Add Outfit</a>
                 </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/view' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/view}">MyOutfits</a>
+                </li>
             </ul>
         </div>
     </nav>
