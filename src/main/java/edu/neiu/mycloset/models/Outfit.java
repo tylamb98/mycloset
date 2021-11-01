@@ -1,6 +1,8 @@
 package edu.neiu.mycloset.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -8,10 +10,18 @@ public class Outfit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    //Instance variables
+    //Instance variables with validation
     private long id;
+    @NotBlank(message = "Required field")
+    @Size(min = 2, message = "Must be two or more characters.")
     private String top;
+
+    @NotBlank(message = "Required field")
+    @Size(min = 2, message = "Must be two or more characters.")
     private String bottom;
+
+    @NotBlank(message = "Required field")
+    @Size(min = 2, message = "Must be two or more characters.")
     private String shoes;
 
     private LocalDateTime created;
