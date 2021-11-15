@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <h5 class="card-title d-inline" th:text="${outfit.outfitName}"></h5>
                         <a th:href="@{/outfit/view/{id}(id=${outfit.id})}" class="ml-3 text-dark"><i class="fas fa-eye"></i> </a>
-                        <a class="ml-3 text-danger"><i class="fas fa-trash-alt"></i> </a>
+                        <a th:href="@{/outfit/delete/{id}(id=${outfit.id})}"class="ml-3 text-danger"><i class="fas fa-trash-alt"></i> </a>
                     </div>
                 </div>
                 <div class="col-2 col-md-4"></div>

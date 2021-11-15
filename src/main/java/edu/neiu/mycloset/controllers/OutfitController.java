@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Path;
 import javax.validation.Valid;
 
 @Controller
@@ -38,6 +39,7 @@ public class OutfitController {
          return "view-outfit";
         
     }
+
 
     //modified post method
     @PostMapping
@@ -74,6 +76,13 @@ public class OutfitController {
         original.setBottom((update.getBottom()));
         original.setShoes(update.getShoes());
         original.setOutfitName(update.getOutfitName());
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteOutfit(@PathVariable Long id){
+        this.outfitRepo.deleteById(id);
+        return "redirect:/index-page";
+
     }
 
 }
