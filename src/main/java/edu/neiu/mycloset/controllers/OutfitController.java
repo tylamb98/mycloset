@@ -3,13 +3,11 @@ package edu.neiu.mycloset.controllers;
 import edu.neiu.mycloset.data.OutfitRepository;
 import edu.neiu.mycloset.models.Outfit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -33,6 +31,14 @@ public class OutfitController {
         return "add-outfit";        //returning the view
     }
 
+    @GetMapping("/view/{id}")
+    public String showOutfit(@PathVariable  Long id, Model model) {
+         Outfit outfit = this.outfitRepo.findById(id).get();
+         model.addAttribute("outfit" ,  outfit);
+         return "view-outfit";
+        
+    }
+
     //modified post method
     @PostMapping
     public String handleOutfitForm(@Valid @ModelAttribute("outfit") Outfit outfit, Errors errors) {
@@ -44,5 +50,30 @@ public class OutfitController {
         return "redirect:/index-page";
     }
 
+    @PostMapping("/edit/{id}")
+    public String HandleEditStudentForm (@PathVariable Long id, @Valid @ModelAttribute("outfit") Outfit outfit, Errors errors){
+        //if i have any errors
+        if (errors.hasErrors())
+            return "view-outfit";
+
+        try {
+            Outfit ogOutfit = this.outfitRepo.findById(id).get();
+            updateOgOutfit(ogOutfit, outfit);
+            this.outfitRepo.save(ogOutfit);
+        } catch (DataIntegrityViolationException e) {
+            errors.rejectValue("email", "invalid email", "Email not available");
+            return "view-outfit";
+        }
+
+
+        return "redirect:/index-page";
+    }
+
+    private void updateOgOutfit(Outfit original,Outfit update ) {
+        original.setTop(update.getTop());
+        original.setBottom((update.getBottom()));
+        original.setShoes(update.getShoes());
+        original.setOutfitName(update.getOutfitName());
+    }
 
 }

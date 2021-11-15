@@ -2,17 +2,21 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:insert="fragments/base :: headerFiles"></th:block>
-    <title>MyCloset</title>
+  <th:block th:insert="fragments/base :: headerFiles"></th:block>
+
+  <title>Outfit</title>
 </head>
-
 <body>
-<div th:replace="fragments/base :: navigation"></div>
-<div th:replace="fragments/base :: header"></div>
+    <div th:replace="fragments/base :: navigation"></div>
+    <div th:replace="fragments/base :: header"></div>
 
-<br>
-<h6 class="text-center"> Enter Your Outfit</h6>
-    <form class="mt-3" th:action="@{/outfit}" th:object="${outfit}" method="post">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <h3 class="text-center col-12">View/Edit Outfit</h3>
+        </div>
+    </div>
+
+    <form class="mt-3 mb-3" th:action="@{/outfit/edit/{id}(id=${outfit.id})}" th:object="${outfit}" method="post">
         <div class="container-fluid">
 
             <div class="row justify-content-center">
@@ -69,10 +73,18 @@
             </div>
 
 
+            <div class="row justify-content-center mb-3">
+                <div class="col-8 col-md-3">
+                    <span th:text="'Date Created: ' + ${#temporals.format(outfit.created, 'dd-MM-yyyy HH:mm')}"></span><br>
+                    <span th:text="'Date Modified: ' + ${#temporals.format(outfit.modified, 'dd-MM-yyyy HH:mm')}"></span><br>
+                </div>
+            </div>
+
 
             <div class="row justify-content-center">
                 <div class="col-8 col-md-3">
                     <input class="btn btn-light btn-outline-dark" type="submit" value="Submit">
+                    <a class=" ml-2 btn btn-light btn-outline-dark" th:href="@{/view}">Cancel</a>
                 </div>
             </div>
 

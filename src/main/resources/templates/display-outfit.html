@@ -16,9 +16,9 @@
                 <div class="col-2 col-md-4"></div>
                 <div class="col-8 col-md-4 card">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${outfit.top} + ', ' + ${outfit.bottom} + ', and ' + ${outfit.shoes}"></h5>
-                        <span th:text="'Date created: ' + ${#temporals.format(outfit.created, 'dd-MM-yyyy HH:mm')}"></span><br>
-                        <span th:text="'Date modified: ' + ${#temporals.format(outfit.modified, 'dd-MM-yyyy HH:mm')}"></span>
+                        <h5 class="card-title d-inline" th:text="${outfit.outfitName}"></h5>
+                        <a th:href="@{/outfit/view/{id}(id=${outfit.id})}" class="ml-3 text-dark"><i class="fas fa-eye"></i> </a>
+                        <a class="ml-3 text-danger"><i class="fas fa-trash-alt"></i> </a>
                     </div>
                 </div>
                 <div class="col-2 col-md-4"></div>

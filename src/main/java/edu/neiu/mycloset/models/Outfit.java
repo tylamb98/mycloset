@@ -2,6 +2,7 @@ package edu.neiu.mycloset.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -24,6 +25,11 @@ public class Outfit {
     @Size(min = 2, message = "Must be two or more characters.")
     private String shoes;
 
+    @NotBlank(message = "Outfit name is required.")
+    @Column(unique = true)
+    private String outfitName;
+
+
     private LocalDateTime created;
     private LocalDateTime modified;
 
@@ -33,15 +39,35 @@ public class Outfit {
         this.top = "";
         this.bottom = "";
         this.shoes = "";
+        this.outfitName = "";
+
 
     }
-    public Outfit(String top, String bottom, String shoes) {
+    public Outfit(String outfitName, String top, String bottom, String shoes) {
+        this.outfitName = outfitName;
         this.top = top;
         this.bottom = bottom;
         this.shoes = shoes;
     }
 
     //Getters & Setters
+
+    public long getId() {
+        return this.id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getOutfitName() {
+        return outfitName;
+    }
+
+    public void setOutfitName(String outfitName) {
+        this.outfitName = outfitName;
+    }
+
     public String getTop() {
         return top;
     }
