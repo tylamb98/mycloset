@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <th:block th:fragment="headerFiles">
@@ -25,18 +26,23 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav mr-auto">
+
                 <li class="nav-item" th:classappend="${#request.getServletPath() == '/index-page' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/index-page}">Home</a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/outfit' ? 'active' : ''}">
+
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/outfit' ? 'active' : ''}"
+                    sec:authorize="hasAnyRole('ADMIN', 'USER')">
                     <a class="nav-link" th:href="@{/outfit}">Add Outfit</a>
                 </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/view' ? 'active' : ''}">
+
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/view' ? 'active' : ''}"
+                    sec:authorize="hasAnyRole('ADMIN', 'USER')">
                     <a class="nav-link" th:href="@{/view}">MyOutfits</a>
                 </li>
             </ul>
 
-            <a th:href="@{/logout}" class="btn btn-light btn btn-outline-dark">Logout</a>
+            <a th:href="@{/logout}" class="btn btn-light btn btn-outline-dark" sec:authorize="isAuthenticated()" >Logout</a>
         </div>
     </nav>
 
