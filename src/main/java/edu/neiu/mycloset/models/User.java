@@ -5,6 +5,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +22,13 @@ public class User implements UserDetails {
     private String email;
 
     @Column(unique = true, nullable = false)
+    @NotBlank(message = "Required field")
+    @Size(min = 2, message = "Must be 6 to 12 characters. Case sensitive.")
     private String username;
 
     @Column(nullable = false)
+    @NotBlank(message = "Required field")
+    @Size(min = 6, max = 12, message = "Must be 6 to 12 characters. Case Sensitive.")
     private String password;
 
     private String firstName;
@@ -108,6 +114,7 @@ public class User implements UserDetails {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
 
     //Abstract methods
     @Override

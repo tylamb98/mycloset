@@ -30,11 +30,7 @@ public class UserDataLoader implements CommandLineRunner {
 //        user.setEnabled(true);
 //        userRepo.save(user);
 //
-//        User user1 = new User("db@gmail.com", "Db123", passwordEncoder.encode("password"),
-//                "Tyris", "Jones");
-//        user1.setRoles(Set.of(User.Role.ROLE_ADMIN));
-//        user1.setEnabled(true);
-//        userRepo.save(user1);
+
 
     }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <th:block th:insert="fragments/base :: headerFiles"></th:block>
     <title>MyCloset</title>
@@ -11,7 +12,15 @@
     <div th:replace="fragments/base :: header"></div>
 
     <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" sec:authorize="isAuthenticated()">
+            <div class="col-8 col-md-3 text-center">
+                <h4 th:text="'Welcome ' + ${User.firstName} + ' ' + ${User.lastName} + '!'"></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center" sec:authorize="isAnonymous()">
             <div class="col-8 col-md-3 text-center">
                 <a th:href="@{/login}" class="btn btn-light btn-outline-dark">Login</a>
             </div>

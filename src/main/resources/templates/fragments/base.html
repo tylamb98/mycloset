@@ -40,6 +40,10 @@
                     sec:authorize="hasAnyRole('ADMIN', 'USER')">
                     <a class="nav-link" th:href="@{/view}">MyOutfits</a>
                 </li>
+
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/signup' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{/signup}">Sign Up</a>
+                </li>
             </ul>
 
             <a th:href="@{/logout}" class="btn btn-light btn btn-outline-dark" sec:authorize="isAuthenticated()" >Logout</a>
