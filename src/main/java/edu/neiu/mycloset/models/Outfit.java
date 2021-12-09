@@ -56,6 +56,10 @@ public class Outfit {
         return this.id;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -106,6 +110,14 @@ public class Outfit {
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
     }
+
+
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+
+
 
     @PrePersist
     public void onCreat() {

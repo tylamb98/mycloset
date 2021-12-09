@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.swing.text.BadLocationException;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
@@ -33,6 +34,10 @@ public class User implements UserDetails {
 
     private String firstName;
     private String lastName;
+
+@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Outfit> outfits = new HashSet<>();
+
     private boolean enabled;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
@@ -42,6 +47,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Collection<Role> roles;
+
+
+
 
     public enum Role { ROLE_ADMIN, ROLE_USER }
 
@@ -114,6 +122,7 @@ public class User implements UserDetails {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
 
 
     //Abstract methods
